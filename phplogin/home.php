@@ -10,7 +10,6 @@ $DATABASE_PASS = '';
 $DATABASE_NAME = 'phplogin';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
-
 // If the user is an admin, set $isAdmin to true
 if ($_SESSION['isadmin']) {
     $adminLink = '<a href="admin.php"><i class="fas fa-cogs"></i>Admin</a>';
@@ -28,14 +27,9 @@ if ($_SESSION['isadmin']) {
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="loggedin">
-    <nav class="navtop">
-        <div>
-            <h1>Website Title</h1>
-            <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-            <?=$adminLink?> <!-- Display the admin link only if the user is an admin -->
-            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-        </div>
-    </nav>
+    <?php
+    include 'navbar.php';
+    ?>
     <div class="content">
         <h2>Home Page</h2>
         <p>Welcome back, <?=$_SESSION['name']?>!</p>

@@ -10,10 +10,10 @@ if (mysqli_connect_errno()) {
     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-if (isset($_POST['username'], $_POST['password'], $_POST['email'])) {
-    if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
+if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['phone'])) {
+    if ($stmt = $con->prepare('INSERT INTO accounts (name, password, email, telephone) VALUES (?, ?, ?, ?)')) {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+        $stmt->bind_param('ssss', $_POST['name'], $password, $_POST['email'], $_POST['phone']);
         if ($stmt->execute()) {
             header('Location: index.html');
             exit;
@@ -37,10 +37,10 @@ if (isset($_POST['username'], $_POST['password'], $_POST['email'])) {
     <div class="login">
         <h1>User Registration</h1>
         <form action="register.php" method="post">
-            <label for="username">
+            <label for="name">
                 <i class="fas fa-user"></i>
             </label>
-            <input type="text" name="username" placeholder="Username" id="username" required>
+            <input type="text" name="name" placeholder="Name" id="name" required>
             <label for="password">
                 <i class="fas fa-lock"></i>
             </label>
@@ -49,6 +49,10 @@ if (isset($_POST['username'], $_POST['password'], $_POST['email'])) {
                 <i class="fas fa-envelope"></i>
             </label>
             <input type="text" name="email" placeholder="Email Address" id="email" required>
+            <label for="telephone">
+                <i class="fas fa-phone"></i>
+            </label>
+            <input type="tel" id="phone" name="phone" placeholder="+441234567890" pattern="^\+[1-9]\d{1,14}$" required />
 
             <input type="submit" value="Register">
         </form>
