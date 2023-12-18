@@ -10,12 +10,6 @@ $DATABASE_PASS = '';
 $DATABASE_NAME = 'phplogin';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
-// If the user is an admin, set $isAdmin to true
-if ($_SESSION['isadmin']) {
-    $adminLink = '<a href="admin.php"><i class="fas fa-cogs"></i>Admin</a>';
-} else {
-    $adminLink = '';
-}
 ?>
 
 <!DOCTYPE html>

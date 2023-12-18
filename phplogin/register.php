@@ -30,8 +30,38 @@ if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['phone']))
 <html>
 <head>
     <title>Registration Page</title>
+    <style>
+        #password-strength-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+
+        .weak {
+            background-color: red;
+        }
+
+        .poor {
+            background-color: orange;
+        }
+
+        .fair {
+            background-color: yellow;
+        }
+
+        .good {
+            background-color: green;
+        }
+
+        .excellent {
+            background-color: blue;
+        }
+    </style>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="login">
@@ -42,9 +72,10 @@ if (isset($_POST['name'], $_POST['password'], $_POST['email'], $_POST['phone']))
             </label>
             <input type="text" name="name" placeholder="Name" id="name" required>
             <label for="password">
+                <span id="password-strength-indicator" class=""></span>
                 <i class="fas fa-lock"></i>
             </label>
-            <input type="password" name="password" placeholder="Password" id="password" required>
+            <input type="password" name="password" placeholder="Password" id="password" required onkeyup="checkPasswordStrength()">
             <label for="email">
                 <i class="fas fa-envelope"></i>
             </label>

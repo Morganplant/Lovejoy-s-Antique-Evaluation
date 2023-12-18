@@ -33,10 +33,7 @@ $stmt->close();
 </head>
 
 <body class="loggedin">
-    <?php
-    $adminLink = ($_SESSION['isadmin']) ? '<a href="admin.php"><i class="fas fa-cogs"></i>Admin</a>' : '';
-    include 'navbar.php';
-    ?>
+    <?php include 'navbar.php';?>
     <div class="content">
         <h2>Profile Page</h2>
         <div>
